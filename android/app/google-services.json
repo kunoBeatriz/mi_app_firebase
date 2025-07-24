@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "747596867305",
+    "project_id": "autentificacion-780ff",
+    "storage_bucket": "autentificacion-780ff.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:747596867305:android:8d055f7976e7fb90a3b278",
+        "android_client_info": {
+          "package_name": "com.example.mi_app_firebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "747596867305-idbhsq8ud7d2k1jlliolmhjqu996lmvc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDE2K_EqDFODsKof4uZgGBJwOpP5FWkFLU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "747596867305-idbhsq8ud7d2k1jlliolmhjqu996lmvc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
