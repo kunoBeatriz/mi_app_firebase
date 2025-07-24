@@ -1,0 +1,51 @@
+name: Flutter CI Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  analyze-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.19.0'
+        channel: 'stable'
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Analyze code
+      run: flutter analyze
+
+    - name: Run tests
+      run: flutter test
+
+    - name: Check formatting
+      run: flutter format --set-exit-if-changed .
+
+    - name: Build APK (opcional)
+      run: flutter build apk --release
+
+  firebase-emulator-test:
+    needs: analyze-and-test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: subosito/flutter-action@v2
+    - run: flutter pub get
+    - run: flutter pub run build_runner build --delete-conflicting-outputs
+    - uses: wzieba/Firebase-Action@v1
+      with:
+        args: "firebase emulators:exec --only auth 'flutter test integration_test'"
+      env:
+        GCLOUD_PROJECT: ${{ secrets.FIREBASE_PROJECT_ID }}
+        FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
